@@ -8,26 +8,16 @@ import java.util.List;
 public class Account implements Comparable<Account>{
 
     private Integer number;
-    private String holder;
+
+    private String profession;
     private Double balance;
-    private Double withdrawLimit;
     private List<Account> list = new ArrayList<>();
 
-    public Account(){
-
-    }
-    public Account(Integer number, String holder, Double balance, Double withdrawLimit) {
-        this.setNumber(number);
-        this.setHolder(holder);
-        this.setBalance(balance);
-        this.setWithdrawLimit(withdrawLimit);
-    }
-
-    public Double getWithdrawLimit() {
-        return withdrawLimit;
-    }
-    public void setWithdrawLimit(Double withdrawLimit) {
-        this.withdrawLimit = withdrawLimit;
+    public Account(){}
+    public Account(Integer number, String profession, Double balance) {
+        this.number = number;
+        this.profession = profession;
+        this.balance = balance;
     }
     public Double getBalance() {
         return balance;
@@ -35,11 +25,11 @@ public class Account implements Comparable<Account>{
     public void setBalance(Double balance) {
         this.balance = balance;
     }
-    public String getHolder() {
-        return holder;
+    public String getProfession() {
+        return profession;
     }
-    public void setHolder(String holder) {
-        this.holder = holder;
+    public void setProfession(String profession) {
+        this.profession = profession;
     }
     public Integer getNumber() {
         return number;
@@ -47,22 +37,16 @@ public class Account implements Comparable<Account>{
     public void setNumber(Integer number) {
         this.number = number;
     }
-
     public void deposit(Double amount){
         balance += amount;
-
     }
-    public void withdraw(Double amount) throws Exceptions{ 
-        if(amount > withdrawLimit){
-            throw new Exceptions("The amount exceeds withdraw limit");
-        }
-        else if(balance < amount || balance == 0){
+    public void withdraw(Double amount) throws Exceptions{
+        if(balance < amount || balance == 0){
             throw new Exceptions("Not enough balance");
         }
         else{
             balance -= amount;
-        }  
-
+        }
     }
     @Override
     public String toString() {
